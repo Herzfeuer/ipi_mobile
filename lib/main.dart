@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -33,15 +35,16 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   //variables
+  static const double horizontalPadding = 25;
+  static const double textFieldRadius = 15;
 
   //functions
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment(0, -0.7),
@@ -51,34 +54,60 @@ class _LoginPageState extends State<LoginPage> {
             ],
           ),
         ),
-        child: const Center(
-          child: Column(
-            children: [
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(horizontalPadding,210,horizontalPadding,100),
+            child: Column(
+              children: [
 
-              Icon(
-                  Icons.android_rounded,
-                  color: Colors.white,
-                  size: 200,
-              ),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  fillColor: Color(0xff144594),
-                  filled: true,
-                  labelText: 'Логин',
+                Icon(
+                    Icons.android_rounded,
+                    color: Colors.white,
+                    size: 200,
                 ),
-              ),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  fillColor: Color(0xff144594),
-                  filled: true,
-                  labelText: 'Пароль',
+
+                TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(textFieldRadius)),
+                    ),
+                    fillColor: Color(0xff144594),
+                    filled: true,
+                    labelText: 'Логин',
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Montserrat",
+                      fontSize: 20,
+                    ),
+                  ),
                 ),
-              ),
-            ],
+
+                Padding(padding: EdgeInsets.all(5)),
+
+                TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(textFieldRadius)),
+                    ),
+                    fillColor: Color(0xff144594),
+                    filled: true,
+                    labelText: 'Пароль',
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                        fontFamily: "Montserrat",
+                        fontSize: 20,
+                      ),
+                  ),
+                ),
+
+                ElevatedButton(
+                    onPressed: (){},
+                    child: Text("Войти")
+                )
+              ],
+            ),
           ),
         ),
       ),
