@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
   // Common TextField decoration
-  InputDecoration textFieldDecoration(String labelText) {
+  InputDecoration textFieldDecoration(String labelText, Icon? prefixIcon) {
     return InputDecoration(
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(textFieldRadius)),
@@ -31,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
         fontFamily: "Montserrat",
         fontSize: 20,
       ),
+      prefixIcon: prefixIcon,
     );
   }
 
@@ -57,27 +58,38 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
 
-                  SizedBox(height: 70), // Some space at the top
+                  SizedBox(height: 40),
 
-                  SvgPicture.asset(
-                    "assets/images/ipi_logo_2.svg",
-                    width: 200.0,
-                    height: 200.0,
-                    color: Colors.white,
+                  const Image(
+                    image: AssetImage('assets/images/ipi_logo/2x/ipi_logo_2_white_xhdpi.png'),
+                    width: 250,
+                    height: 250,
                   ),
 
                   SizedBox(height: 20),
 
                   TextField(
-                    obscureText: true,
-                    decoration: textFieldDecoration("Логин"),
+                    obscureText: false,
+                    decoration: textFieldDecoration("Логин", Icon(Icons.account_circle, color: Colors.white)),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Montserrat",
+                      fontSize: 20,
+                    ),
+                    cursorColor: Colors.white,
                   ),
 
                   SizedBox(height: 10),
 
                   TextField(
                     obscureText: true,
-                    decoration: textFieldDecoration("Пароль"),
+                    decoration: textFieldDecoration("Пароль", Icon(Icons.lock, color: Colors.white)),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Montserrat",
+                      fontSize: 20,
+                    ),
+                    cursorColor: Colors.white,
                   ),
 
                   SizedBox(height: 10),
