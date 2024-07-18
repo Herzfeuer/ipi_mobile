@@ -90,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.home,
             ),
             label: _pagesTitles[0],
-            backgroundColor: Colors.blue[200],
+            backgroundColor: Colors.blue[400],
           ),
 
           BottomNavigationBarItem(
@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.calendar_month,
             ),
             label: _pagesTitles[1],
-            backgroundColor: Colors.blue[200],
+            backgroundColor: Colors.blue[400],
           ),
 
           BottomNavigationBarItem(
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.person,
             ),
             label: _pagesTitles[2],
-            backgroundColor: Colors.blue[200],
+            backgroundColor: Colors.blue[400],
           ),
 
           BottomNavigationBarItem(
@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.grid_view,
             ),
             label: _pagesTitles[3],
-            backgroundColor: Colors.blue[200],
+            backgroundColor: Colors.blue[400],
           ),
         ],
         selectedItemColor: Colors.white,
