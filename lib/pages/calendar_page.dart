@@ -15,6 +15,8 @@ class _CalendarPageState extends State<CalendarPage> {
   final CalendarFormat _calendarFormat = CalendarFormat.month;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+  final DateTime _firstDay =  DateTime.utc(2024); // start calendar counting
+  final DateTime _lastDay =  DateTime.utc(2050);  // end calendar counting
   final Radius _borderRadius = const Radius.circular(12);
   String _month = '';
 
@@ -46,11 +48,14 @@ class _CalendarPageState extends State<CalendarPage> {
     super.initState();
 
     // initializing month string
-    _month = _months[DateTime.now().month - 1];
+    _month = '${_months[DateTime.now().month - 1]}, ${DateTime.now().year}';
 
     // initializing some events for example
     _events[DateTime.utc(2024,7,18)] = [
-      Event('Пасхалочка')
+      Event('Пасхалочка', TimeOfDay(hour: 12, minute: 42)),
+    ];
+    _events[DateTime.utc(2024,7,10)] = [
+      Event('Начало работы над приложением', TimeOfDay(hour: 11, minute: 00)),
     ];
   }
 
@@ -62,7 +67,7 @@ class _CalendarPageState extends State<CalendarPage> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(children: [
-          const SizedBox(height: 35),
+          const SizedBox(height: 20),
           Container(
             decoration: BoxDecoration(
               color: Colors.blue[50],
@@ -85,8 +90,8 @@ class _CalendarPageState extends State<CalendarPage> {
                   ),
                   TableCalendar(
                     headerVisible: false,
-                    firstDay: DateTime.utc(2020),
-                    lastDay: DateTime.utc(2050),
+                    firstDay: _firstDay,
+                    lastDay: _lastDay,
                     focusedDay: _focusedDay,
                     calendarFormat: _calendarFormat,
                     startingDayOfWeek: StartingDayOfWeek.monday,
@@ -109,7 +114,7 @@ class _CalendarPageState extends State<CalendarPage> {
                     onPageChanged: (focusedDay) {
                       setState(() {
                         _focusedDay = focusedDay;
-                        _month = _months[focusedDay.month - 1];
+                        _month = '${_months[focusedDay.month - 1]}, ${focusedDay.year}';
                       });
                     },
 
@@ -194,14 +199,26 @@ class _CalendarPageState extends State<CalendarPage> {
                 return Card (
                   color: Colors.blue[50],
                   shadowColor: Colors.transparent,
+
                   child: ListTile(
+
                     title: Text(event.title, style: TextStyle(
                       fontFamily: "Montserrat",
                       fontWeight: FontWeight.w300,
                       fontSize: 20,
                       color: Colors.black,
                     ),),
-                    // trailing: Text('${event.time}'),
+
+                    trailing: Text(
+                      event.time.format(context),
+                      style: const TextStyle(
+                        fontFamily: "Montserrat",
+                        fontWeight: FontWeight.w300,
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+
                     onTap: () {
                       // Handle event tap
                       debugPrint('Tapped on $event');
